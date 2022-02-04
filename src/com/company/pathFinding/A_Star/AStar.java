@@ -7,9 +7,12 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class A_Star {
+public class AStar {
 
-    private int heuristic(Position neighbor, Position current, Boolean allowDiagonals) {
+    private int heuristic(
+            Position neighbor,
+            Position current,
+            Boolean allowDiagonals) {
         int newG;
         if (allowDiagonals) {
             newG = (int) Point2D.distance(
@@ -27,7 +30,8 @@ public class A_Star {
     private boolean PositionCheck(
             Position current,
             Position end) {
-
+        System.out.println(current.getX() + " : " + current.getY()
+                + " | " + end.getX() + " : " + end.getY());
         if (current.getX() == end.getX()
                 && current.getY() == end.getY()) {
             return true;
@@ -36,14 +40,16 @@ public class A_Star {
         }
     }
 
-    private int AStarPathFinder(
+    public int AStarPathFinder(
             List<List<Spot>> map,
             Spot start,
             Position end,
             Boolean allowDiagonals) {
 
+        Boolean flag = true;
         List<Spot> openSet = new ArrayList<Spot>();
         List<Spot> closedSet = new ArrayList<Spot>();
+        List<Position> path = new ArrayList<>();
         //Position lastCheckedNode = start;
         openSet.add(start);
 
@@ -68,6 +74,13 @@ public class A_Star {
 
                 if (PositionCheck(current.getPosition(), end)) {
                     System.out.println("Done !!");
+                    Spot currentPosition = current;
+                    path.add(current.getPosition());
+                    while (PositionCheck(currentPosition.getPosition(), start.getPosition())) {
+                        path.add(currentPosition.getPosition());
+                        System.out.println("path : "+ currentPosition.toString());
+                        currentPosition = currentPosition.getPrevious();
+                    }
                     return 1;
                 }
 
@@ -78,10 +91,11 @@ public class A_Star {
 
                 for (Spot neighbor : neighbors) {
                     if (!closedSet.contains(neighbor)) {
-                        var tempG = current.getG() + heuristic(
+                  /*      var tempG = current.getG() + heuristic(
                                 neighbor.getPosition(),
                                 current.getPosition(),
-                                allowDiagonals);
+                                allowDiagonals);*/
+                        var tempG = current.getG() + 1;
 
                         if (!openSet.contains(neighbor)) {
                             openSet.add(neighbor);
@@ -95,14 +109,12 @@ public class A_Star {
                                 end,
                                 allowDiagonals));
                         if (!allowDiagonals) {
-                           // neighbor.vh = this.visualDist(neighbor, end);
+                            // neighbor.vh = this.visualDist(neighbor, end);
                         }
                         neighbor.setF(neighbor.getG() + neighbor.getH());
                         neighbor.setPrevious(current);
                     }
                 }
-
-                return 0;
 
             } else {
                 System.out.println("no solution !!!");

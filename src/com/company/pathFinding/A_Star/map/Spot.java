@@ -18,6 +18,7 @@ public class Spot {
         this.f = 0;
         this.g = 0;
         this.h = 0;
+        this.previous = null;
     }
 
     public Spot() {
@@ -74,4 +75,12 @@ public class Spot {
     public void setG(int g) {
         this.g = g;
     }
+
+
+    @Override
+    public String toString() {
+        return "position: " +  this.position.getX() + " : " + this.position.getY();
+    }
+
+
 }
