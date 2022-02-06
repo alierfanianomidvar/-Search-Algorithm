@@ -1,6 +1,7 @@
 package com.company.pathFinding.A_Star.map;
 
 import java.util.List;
+import java.util.Random;
 
 public class Spot {
 
@@ -13,12 +14,23 @@ public class Spot {
     private List<Spot> neighbors;
     private Spot previous;
 
+    private Boolean wall;
+
     public Spot(Position position) {
         this.position = position;
         this.f = 0;
         this.g = 0;
         this.h = 0;
         this.previous = null;
+        if (new Random().nextInt(2) == 1) {
+            if (new Random().nextInt(2) == 1) {
+                this.wall = true;
+            } else {
+                this.wall = false;
+            }
+        } else {
+            this.wall = false;
+        }
     }
 
     public Spot() {
@@ -77,9 +89,17 @@ public class Spot {
     }
 
 
+    public Boolean getWall() {
+        return wall;
+    }
+
+    public void setWall(Boolean wall) {
+        this.wall = wall;
+    }
+
     @Override
     public String toString() {
-        return "position: " +  this.position.getX() + " : " + this.position.getY();
+        return "position: " + this.position.getX() + " : " + this.position.getY();
     }
 
 

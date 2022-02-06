@@ -56,6 +56,19 @@ public class Main {
             }
         }
         map.get(0).get(0).setPrevious(null);
+        map.get(9).get(9).setWall(false);
+        map.get(0).get(0).setWall(false);
+        for (List<Spot> spots : map) {
+            System.out.print("| ");
+            for (Spot spot : spots) {
+                if(spot.getWall()){
+                    System.out.print(" * ");
+                } else {
+                    System.out.print(" o ");
+                }
+            }
+            System.out.println(" |");
+        }
         a_star.AStarPathFinder(map,map.get(0).get(0),new Position(9,9),false);
     }
 }
