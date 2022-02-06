@@ -9,8 +9,6 @@ import java.util.List;
 
 public class AStar{
 
-
-
     private int heuristic(
             Position neighbor,
             Position current,
@@ -41,7 +39,6 @@ public class AStar{
             return false;
         }
     }
-
 
 
     public int AStarPathFinder(
@@ -139,6 +136,4 @@ public class AStar{
             }
         }
     }
-
-
 }

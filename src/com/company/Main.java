@@ -52,6 +52,18 @@ public class Main {
                 if( j < 9){
                     neighbors.add(map.get(i).get(j+1));
                 }
+                if( i > 0 && j > 0){
+                    neighbors.add(map.get(i-1).get(j-1));
+                }
+                if( i < 9  && j > 0){
+                    neighbors.add(map.get(i+1).get(j-1));
+                }
+                if( i > 0 && j < 9 ){
+                    neighbors.add(map.get(i-1).get(j+1));
+                }
+                if( i < 9 && j < 9){
+                    neighbors.add(map.get(i+1).get(j+1));
+                }
                 spot.setNeighbors(neighbors);
             }
         }
