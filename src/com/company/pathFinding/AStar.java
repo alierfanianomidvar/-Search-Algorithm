@@ -1,7 +1,7 @@
-package com.company.pathFinding.A_Star;
+package com.company.pathFinding;
 
-import com.company.pathFinding.A_Star.map.Position;
-import com.company.pathFinding.A_Star.map.Spot;
+import com.company.pathFinding.map.Position;
+import com.company.pathFinding.map.Spot;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;

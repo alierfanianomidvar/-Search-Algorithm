@@ -1,79 +1,26 @@
 package com.company;
 
-import com.company.pathFinding.A_Star.AStar;
-import com.company.pathFinding.A_Star.map.Position;
-import com.company.pathFinding.A_Star.map.Spot;
+import com.company.pathFinding.AStar;
+import com.company.pathFinding.map.Map;
+import com.company.pathFinding.map.Position;
+import com.company.pathFinding.map.Spot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        List<List<Spot>> map = new ArrayList<>();
-        List<Spot> mapSpot;
-        List<Spot> neighbors;
 
-        AStar a_star = new AStar();
+        AStar aStar = new AStar();
+        Map creatMap = new Map();
 
+        List<List<Spot>> map = creatMap.creatMap();
 
-        for (int i = 0; i < 10; i++) {
-            mapSpot = new ArrayList<>();
-            for (int j = 0; j < 10; j++) {
-                mapSpot.add(new Spot(new Position(i, j)));
-            }
-            map.add(mapSpot);
-        }
-
-        //System.out.println(Arrays.toString(map.get(2).toArray()));
-
-        for (List<Spot> spots : map) {
-            for (Spot spot : spots) {
-                System.out.println(spot.toString());
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            List<Spot> spots = map.get(i);
-
-            for (int j = 0; j < 10; j++) {
-                neighbors = new ArrayList<>();
-                Spot spot = spots.get(j);
-                if( i > 0){
-                    neighbors.add(map.get(i-1).get(j));
-                }
-                if( i < 9){
-                    neighbors.add(map.get(i+1).get(j));
-                }
-                if( j > 0){
-                    neighbors.add(map.get(i).get(j-1));
-                }
-                if( j < 9){
-                    neighbors.add(map.get(i).get(j+1));
-                }
-                if( i > 0 && j > 0){
-                    neighbors.add(map.get(i-1).get(j-1));
-                }
-                if( i < 9  && j > 0){
-                    neighbors.add(map.get(i+1).get(j-1));
-                }
-                if( i > 0 && j < 9 ){
-                    neighbors.add(map.get(i-1).get(j+1));
-                }
-                if( i < 9 && j < 9){
-                    neighbors.add(map.get(i+1).get(j+1));
-                }
-                spot.setNeighbors(neighbors);
-            }
-        }
-        map.get(0).get(0).setPrevious(null);
-        map.get(9).get(9).setWall(false);
-        map.get(0).get(0).setWall(false);
         for (List<Spot> spots : map) {
             System.out.print("| ");
             for (Spot spot : spots) {
-                if(spot.getWall()){
+                if (spot.getWall()) {
                     System.out.print(" * ");
                 } else {
                     System.out.print(" o ");
@@ -81,6 +28,12 @@ public class Main {
             }
             System.out.println(" |");
         }
-        a_star.AStarPathFinder(map,map.get(0).get(0),new Position(9,9),false);
+
+        Spot start = map.get(0).get(0);
+        start.setPrevious(null);
+        start.setWall(false);
+        map.get(9).get(9).setWall(false);
+
+        aStar.AStarPathFinder(map, map.get(0).get(0), new Position(9, 9), false);
     }
 }

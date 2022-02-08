@@ -1,4 +1,4 @@
-package com.company.pathFinding.A_Star.map;
+package com.company.pathFinding.map;
 
 import java.util.List;
 import java.util.Random;

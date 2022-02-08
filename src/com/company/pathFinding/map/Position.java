@@ -1,4 +1,4 @@
-package com.company.pathFinding.A_Star.map;
+package com.company.pathFinding.map;
 
 public class Position {
 
