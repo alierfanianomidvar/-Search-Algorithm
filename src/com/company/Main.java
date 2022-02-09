@@ -13,7 +13,7 @@ public class Main {
         // write your code here
 
         AStar aStar = new AStar();
-        Map creatMap = new Map();
+        Map creatMap = new Map(10,10,500,500);
 
         List<List<Spot>> map = creatMap.creatMap();
 

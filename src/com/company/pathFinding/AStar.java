@@ -7,7 +7,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AStar{
+public class AStar {
 
     private int heuristic(
             Position neighbor,
@@ -30,8 +30,7 @@ public class AStar{
     private boolean PositionCheck(
             Position current,
             Position end) {
-    //    System.out.println(current.getX() + " : " + current.getY()
-     //           + " | " + end.getX() + " : " + end.getY());
+
         if (current.getX() == end.getX()
                 && current.getY() == end.getY()) {
             return true;
@@ -41,7 +40,7 @@ public class AStar{
     }
 
 
-    public int AStarPathFinder(
+    public List<Position> AStarPathFinder(
             List<List<Spot>> map,
             Spot start,
             Position end,
@@ -77,17 +76,18 @@ public class AStar{
                     System.out.println("Done !!");
                     Spot currentPosition = current;
                     path.add(current.getPosition());
-                    while (!PositionCheck(currentPosition.getPosition(), start.getPosition())) {
+                    while (currentPosition.getPrevious() != null) {
                         path.add(currentPosition.getPosition());
-                        //System.out.println("path : "+ currentPosition.toString());
                         currentPosition = currentPosition.getPrevious();
+
                     }
+                    path.add(start.getPosition());
                     for (List<Spot> spots : map) {
                         System.out.print("| ");
                         for (Spot spot : spots) {
-                            if(spot.getWall()){
+                            if (spot.getWall()) {
                                 System.out.print(" * ");
-                            } else if(path.contains(spot.getPosition())) {
+                            } else if (path.contains(spot.getPosition())) {
                                 System.out.print(" - ");
                             } else {
                                 System.out.print(" o ");
@@ -95,7 +95,7 @@ public class AStar{
                         }
                         System.out.println(" |");
                     }
-                    return 1;
+                    return path;
                 }
 
                 openSet.remove(current);
@@ -105,11 +105,11 @@ public class AStar{
 
                 for (Spot neighbor : neighbors) {
                     if (!closedSet.contains(neighbor) && !neighbor.getWall()) {
-                  /*      var tempG = current.getG() + heuristic(
+                        var tempG = current.getG() + heuristic(
                                 neighbor.getPosition(),
                                 current.getPosition(),
-                                allowDiagonals);*/
-                        var tempG = current.getG() + 1;
+                                allowDiagonals);
+                        //var tempG = current.getG() + 1;
 
                         if (!openSet.contains(neighbor)) {
                             openSet.add(neighbor);
@@ -132,7 +132,7 @@ public class AStar{
 
             } else {
                 System.out.println("no solution !!!");
-                return -1;
+                return new ArrayList<Position>();
             }
         }
     }

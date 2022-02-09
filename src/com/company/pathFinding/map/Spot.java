@@ -41,7 +41,11 @@ public class Spot {
 
 
     public Spot getPrevious() {
-        return previous;
+        if (previous != null) {
+            return previous;
+        } else {
+            return null;
+        }
     }
 
     public void setPrevious(Spot previous) {
