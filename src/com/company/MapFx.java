@@ -45,25 +45,26 @@ public class MapFx extends Application {
                     grid.add(cell, position.getX(), position.getY());
                 }
             }
-            for (List<Spot> spots : map) {
-                for (Spot spot : spots) {
-                    if(spot.getWall()){
-                        grid.showWall(spot.getPosition());
-                    }
-                }
-            }
+
 
             List<Position> positions = aStar.AStarPathFinder(map,
                     map.get(0).get(0),
                     new Position(9, 9),
                     true);
 
-            for (Position position : positions) {
-                grid.showPath(position);
+            for (List<Spot> spots : map) {
+                for (Spot spot : spots) {
+                    if (spot.getWall()) {
+                        grid.showWall(spot.getPosition());
+                    } else if (!spot.getWall()) {
+                        grid.showFNumber(spot.getPosition(), spot.getF());
+                    }
+                    if (positions.contains(spot.getPosition())){
+                        grid.showPath(spot.getPosition());
+                    }
+                }
             }
-
             root.getChildren().addAll(grid);
-
             // create scene and stage
             Scene scene = new Scene(
                     root,
@@ -75,7 +76,6 @@ public class MapFx extends Application {
             primaryStage.show();
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,10 +85,6 @@ public class MapFx extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-
-
-
 
 
 }

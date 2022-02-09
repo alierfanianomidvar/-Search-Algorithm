@@ -1,5 +1,6 @@
 package com.company.javaFx;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 public class Cell extends StackPane {
@@ -14,9 +15,6 @@ public class Cell extends StackPane {
 
         getStyleClass().add("cell");
 
-//          Label label = new Label(this.toString());
-//
-//          getChildren().add(label);
 
         setOpacity(0.9);
     }
@@ -35,6 +33,12 @@ public class Cell extends StackPane {
         // add style
         getStyleClass().add("cell-hover-highlight");
     }
+
+    public void showFNumber(int f) {
+        Label label = new Label("f :" + String.valueOf(f));
+        getChildren().add(label);
+    }
+
 
     public void hoverUnhighlight() {
         getStyleClass().remove("cell-hover-highlight");

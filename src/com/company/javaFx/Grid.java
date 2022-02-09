@@ -13,7 +13,7 @@ public class Grid extends Pane {
 
     Cell[][] cells;
 
-    public Grid( int columns, int rows, double width, double height) {
+    public Grid(int columns, int rows, double width, double height) {
 
         this.columns = columns;
         this.rows = rows;
@@ -46,14 +46,19 @@ public class Grid extends Pane {
     }
 
     public void showWall(Position position) {
-        System.out.println(position.getX() + " _ "+  position.getY() );
         Cell cell = cells[position.getX()][position.getY()];
         cell.showWall();
     }
+
     public void showPath(Position position) {
-        System.out.println(position.getX() + " _ "+  position.getY() );
         Cell cell = cells[position.getX()][position.getY()];
         cell.showPath();
     }
+
+    public void showFNumber(Position position, int f) {
+        Cell cell = cells[position.getX()][position.getY()];
+        cell.showFNumber(f);
+    }
+
 
 }
