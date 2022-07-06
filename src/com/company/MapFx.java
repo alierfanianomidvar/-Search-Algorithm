@@ -17,7 +17,6 @@ public class MapFx extends Application {
 
     AStar aStar = new AStar();
 
-
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -48,8 +47,8 @@ public class MapFx extends Application {
 
 
             List<Position> positions = aStar.AStarPathFinder(map,
-                    map.get(0).get(0),
-                    new Position(9, 9),
+                    map.get(0).get(1),
+                    new Position(6, 3),
                     true);
 
             for (List<Spot> spots : map) {

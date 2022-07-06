@@ -87,9 +87,9 @@ public class Map {
             }
         }
 
-        map.get(0).get(0).setPrevious(null);
-        map.get(0).get(0).setWall(false);
-        map.get(9).get(9).setWall(false);
+        map.get(0).get(1).setPrevious(null);
+        map.get(0).get(1).setWall(false);
+        map.get(6).get(3).setWall(false);
 
         return map;
     }
