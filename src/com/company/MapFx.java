@@ -3,6 +3,7 @@ package com.company;
 import com.company.javaFx.Cell;
 import com.company.javaFx.Grid;
 import com.company.pathFinding.AStar;
+import com.company.pathFinding.Bfs;
 import com.company.pathFinding.map.Map;
 import com.company.pathFinding.map.Position;
 import com.company.pathFinding.map.Spot;
@@ -15,7 +16,10 @@ import java.util.List;
 
 public class MapFx extends Application {
 
+
     AStar aStar = new AStar();
+
+    Bfs bfs = new Bfs();
 
     @Override
     public void start(Stage primaryStage) {
@@ -46,10 +50,15 @@ public class MapFx extends Application {
             }
 
 
-            List<Position> positions = aStar.AStarPathFinder(map,
+            /*List<Position> positions = aStar.AStarPathFinder(map,
                     map.get(0).get(1),
                     new Position(6, 3),
-                    true);
+                    true);*/
+
+            List<Position> positions = bfs.BfsPathFinder(
+                    map.get(0).get(1),
+                    map.get(6).get(3)
+                    );
 
             for (List<Spot> spots : map) {
                 for (Spot spot : spots) {
