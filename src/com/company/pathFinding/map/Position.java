@@ -25,4 +25,16 @@ public class Position {
     public void setY(int y) {
         this.y = y;
     }
+
+    public boolean PositionCheck(
+            Position current,
+            Position end) {
+
+        if (current.getX() == end.getX()
+                && current.getY() == end.getY()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

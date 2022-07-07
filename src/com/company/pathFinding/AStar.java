@@ -46,7 +46,6 @@ public class AStar {
             Position end,
             Boolean allowDiagonals) {
 
-        Boolean flag = true;
         List<Spot> openSet = new ArrayList<Spot>();
         List<Spot> closedSet = new ArrayList<Spot>();
         List<Position> path = new ArrayList<>();
