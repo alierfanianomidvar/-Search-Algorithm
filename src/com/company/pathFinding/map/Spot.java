@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Spot {
 
-    // position of  spot
+    // position of spot
     private Position position;
     private int f;
     private int h;
@@ -16,12 +16,16 @@ public class Spot {
 
     private Boolean wall;
 
+    // for bfs algo.
+    private Boolean visited;
+
     public Spot(Position position) {
         this.position = position;
         this.f = 0;
         this.g = 0;
         this.h = 0;
         this.previous = null;
+        // creating random wall on are map.
         if (new Random().nextInt(2) == 1) {
             if (new Random().nextInt(2) == 1) {
                 this.wall = true;
@@ -31,6 +35,8 @@ public class Spot {
         } else {
             this.wall = false;
         }
+
+        this.visited = false;
     }
 
     public Spot() {
@@ -99,6 +105,16 @@ public class Spot {
 
     public void setWall(Boolean wall) {
         this.wall = wall;
+    }
+
+
+    // we use these two in bfs algo.
+    public Boolean getVisited() {
+        return visited;
+    }
+
+    public void setVisited(Boolean visited) {
+        this.visited = visited;
     }
 
     @Override
