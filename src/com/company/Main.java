@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.pathFinding.AStar;
 import com.company.pathFinding.Bfs;
+import com.company.pathFinding.Dfs;
 import com.company.pathFinding.map.Map;
 import com.company.pathFinding.map.Position;
 import com.company.pathFinding.map.Spot;
@@ -15,6 +16,7 @@ public class Main {
 
         AStar aStar = new AStar();
         Bfs bfs = new Bfs();
+        Dfs dfs = new Dfs();
 
         Map creatMap = new Map(10,10,500,500);
 
@@ -38,7 +40,9 @@ public class Main {
         map.get(9).get(9).setWall(false);
 
         //aStar.AStarPathFinder(map, map.get(0).get(0), new Position(9, 9), false);
-        List<Position> path = bfs.BfsPathFinder(map.get(0).get(0), map.get(9).get(9));
+        //List<Position> path = bfs.BfsPathFinder(map.get(0).get(0), map.get(9).get(9));
+        List<Position> path = dfs.dfsPathFinder(map.get(0).get(0), map.get(9).get(9));
+
         for (List<Spot> spots : map) {
             System.out.print("| ");
             for (Spot spot : spots) {
