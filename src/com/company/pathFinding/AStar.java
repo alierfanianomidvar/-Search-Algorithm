@@ -104,7 +104,7 @@ public class AStar {
 
                 for (Spot neighbor : neighbors) {
                     if (!closedSet.contains(neighbor) && !neighbor.getWall()) {
-                        var tempG = current.getG() + heuristic(
+                        int tempG = current.getG() + heuristic(
                                 neighbor.getPosition(),
                                 current.getPosition(),
                                 allowDiagonals);

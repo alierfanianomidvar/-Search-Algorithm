@@ -39,9 +39,10 @@ public class Main {
         start.setWall(false);
         map.get(9).get(9).setWall(false);
 
-        //aStar.AStarPathFinder(map, map.get(0).get(0), new Position(9, 9), false);
+        List<Position> path = aStar.AStarPathFinder(map, map.get(0).get(0), new Position(9, 9), false);
+
         //List<Position> path = bfs.BfsPathFinder(map.get(0).get(0), map.get(9).get(9));
-        List<Position> path = dfs.dfsPathFinder(map.get(0).get(0), map.get(9).get(9));
+        //List<Position> path = dfs.dfsPathFinder(map.get(0).get(0), map.get(9).get(9));
 
         for (List<Spot> spots : map) {
             System.out.print("| ");
