@@ -49,15 +49,15 @@ public class MapFx extends Application {
             }
 
 
-            /*List<Position> positions = aStar.AStarPathFinder(map,
+            List<Position> positions = aStar.AStarPathFinder(map,
                     map.get(0).get(1),
-                    new Position(6, 3),
-                    true);*/
+                    new Position(9, 3),
+                    true);
 
-            List<Position> positions = bfs.BfsPathFinder(
+            /*List<Position> positions = bfs.BfsPathFinder(
                     map.get(0).get(1),
                     map.get(6).get(3)
-                    );
+                    );*/
 
             for (List<Spot> spots : map) {
                 for (Spot spot : spots) {
@@ -67,7 +67,7 @@ public class MapFx extends Application {
                         grid.showFNumber(spot.getPosition(), spot.getF());
                     }
                     if (positions.contains(spot.getPosition())){
-                        grid.showPath(spot.getPosition());
+                        grid.showPath(spot.getPosition(), spot.getF(), true);
                     }
                 }
             }

@@ -19,11 +19,15 @@ public class Cell extends StackPane {
         setOpacity(0.9);
     }
 
-    public void showPath() {
+    public void showPath(int f, boolean showNumber) {
         // ensure the style is only once in the style list
         getStyleClass().remove("cell-highlight");
         // add style
         getStyleClass().add("cell-highlight");
+        if(showNumber){
+            Label label = new Label("f :" + String.valueOf(f));
+            getChildren().add(label);
+        }
     }
 
 
@@ -32,6 +36,8 @@ public class Cell extends StackPane {
         getStyleClass().remove("cell-hover-highlight");
         // add style
         getStyleClass().add("cell-hover-highlight");
+
+
     }
 
     public void showFNumber(int f) {
