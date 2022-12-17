@@ -50,9 +50,9 @@ public class Grid extends Pane {
         cell.showWall();
     }
 
-    public void showPath(Position position) {
+    public void showPath(Position position, int f, Boolean showNumber) {
         Cell cell = cells[position.getX()][position.getY()];
-        cell.showPath();
+        cell.showPath(f, showNumber);
     }
 
     public void showFNumber(Position position, int f) {

@@ -9,22 +9,24 @@ import java.util.List;
 
 public class AStar {
 
+
+    // Here we use Euclidean Distance to find heuristic
     private int heuristic(
             Position neighbor,
             Position current,
             Boolean allowDiagonals) {
-        int newG;
+        int heuristic = 0;
         if (allowDiagonals) {
-            newG = (int) Point2D.distance(
+            heuristic = (int) Point2D.distance(
                     neighbor.getX(),
                     neighbor.getY(),
                     current.getX(),
                     current.getY());
         } else {
-            newG = Math.abs(neighbor.getX() - current.getX())
+            heuristic = Math.abs(neighbor.getX() - current.getX())
                     + Math.abs(neighbor.getY() - current.getY());
         }
-        return newG;
+        return heuristic;
     }
 
     private boolean PositionCheck(
@@ -50,28 +52,31 @@ public class AStar {
         List<Spot> closedSet = new ArrayList<Spot>();
         List<Position> path = new ArrayList<>();
         //Position lastCheckedNode = start;
+
+        // At first in our open set we only have our starting node.
         openSet.add(start);
 
         while (true) {
             if (!openSet.isEmpty()) {
                 int winner = 0;
-                for (int i = 0; i < openSet.size(); i++) {
+
+                for (int i = 0; i < openSet.size(); i++) {//Here we will choose the best node to choose for our next node.
 
                     Spot currentSpot = openSet.get(i);
                     Spot winnerSpot = openSet.get(winner);
 
                     if (currentSpot.getF() < winnerSpot.getF()) {
                         winner = i;
-                    } else if (currentSpot.getF() == winnerSpot.getF()) {
+                    } else if (currentSpot.getF() == winnerSpot.getF()) { //We want the best node.
                         if (currentSpot.getG() > winnerSpot.getG()) {
                             winner = i;
                         }
                     }
                 }
-                Spot current = openSet.get(winner);
-                //lastCheckedNode = current.getPosition();
 
-                if (PositionCheck(current.getPosition(), end)) {
+                Spot current = openSet.get(winner); //here we move to our new node(THE BEST NODE).
+                //lastCheckedNode = current.getPosition();
+                if (PositionCheck(current.getPosition(), end)) { //Check if our new node is the end or not.
                     System.out.println("Done !!");
                     Spot currentPosition = current;
                     path.add(current.getPosition());
@@ -81,7 +86,7 @@ public class AStar {
 
                     }
                     path.add(start.getPosition());
-                    for (List<Spot> spots : map) {
+                    for (List<Spot> spots : map) { // to print the map
                         System.out.print("| ");
                         for (Spot spot : spots) {
                             if (spot.getWall()) {
@@ -100,20 +105,15 @@ public class AStar {
                 openSet.remove(current);
                 closedSet.add(current);
 
-                List<Spot> neighbors = current.getNeighbors();
-
-                for (Spot neighbor : neighbors) {
+                for (Spot neighbor : current.getNeighbors()) { // loop on list of neighbors
                     if (!closedSet.contains(neighbor) && !neighbor.getWall()) {
-                        int tempG = current.getG() + heuristic(
+                        int tempG = current.getG() + heuristic( //To find the better value of g.
                                 neighbor.getPosition(),
                                 current.getPosition(),
                                 allowDiagonals);
-                        //var tempG = current.getG() + 1;
-
                         if (!openSet.contains(neighbor)) {
                             openSet.add(neighbor);
-                        } else if (tempG >= neighbor.getG()) {
-                            // No, it's not a better path
+                        } else if (tempG >= neighbor.getF()) { // No, it's not a better path
                             continue;
                         }
                         neighbor.setG(tempG);
