@@ -27,8 +27,7 @@ public class Dfs {
     }
 
     public void  recursiveDfs(
-            Spot spot
-            ){
+            Spot spot){
 
         length +=1;
 
@@ -45,7 +44,6 @@ public class Dfs {
         for (Spot spotNeighbor : spot.getNeighbors()) {
             if(!spotNeighbor.getVisited() && !spotNeighbor.getWall()){
                 spotNeighbor.setPrevious(spot);
-
                 recursiveDfs(spotNeighbor);
             }
 

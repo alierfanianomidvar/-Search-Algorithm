@@ -100,6 +100,63 @@ Euclidean distance is the distance of our current node and our end node using di
 
 
 
+----------------------------------
 
+# DFS
+
+Depth-First Search or DFS algorithm is a recursive algorithm that uses the backtracking principle.
+DFS will start from node root and goes done and explores as far as possible along each branch
+before backtracking.
+
+**generally we do not use dfs for path-finding it better to use bfs instead.**
+
+
+## DFS Algorithm :
+
+First for dfs we need 2 list Visited and Not Visited(Neighbors). The purpose of the algorithm is to mark
+each vertex as visited while avoiding cycles. The DFS algorithm works as follows:
+
+
+```
+   DFS algorithm ->
+   
+   1.Start with any node and add the node to our list(Not Visited).
+   2.Pop the top node at the list.
+   3.Add the node to visited node.
+   3.See the neoghbors node if they are not visited add them to not visited list.
+   4.Keep repeating steps 2 and 3 until the stack is empty.
+   
+```
+
+### DFS Algorithm Example :
+
+
+## DFS Algorithm For Path Finding:
+
+
+Here we must add some value to original algorithm to find the best path. First we need
+to keep the length from starting node, dfs can not find the shortest path, so we must keep
+track of the shortest path, also we need to save the father node(the previous node).
+
+```
+   DFS algorithm ->
+   
+   1.length = 0; (Globaly)
+   2.shortLength = Integer.MAX_VALUE; (Globaly)
+   
+   3. create recursive Dfs function :
+        3.1 add to value of length
+        3.2 check if the length is biger than value of the shortLength
+            3.2.1 if it was biger return
+        3.3 check the postien  
+            3.3.1 if we are reach to the end node save the length and return
+        3.4 add the node to visited list
+        3.5 loop on the connect node :
+            3.5.1 save the previous node
+            3.5.2 call the function agian with the new node  
+
+   4. trcae back the path from end node.
+   
+```
 
 
